@@ -1,0 +1,238 @@
+:root {
+  --bg1: #180814;
+  --bg2: #3a0d2d;
+  --pink: #ff4d8d;
+  --pink-light: #ff8fb8;
+  --white: #fff7fb;
+  --shadow: rgba(255, 77, 141, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  color: var(--white);
+  background: radial-gradient(circle at top, #44112f 0%, var(--bg1) 30%, var(--bg2) 100%);
+  overflow-x: hidden;
+}
+
+.background-glow {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255, 110, 170, 0.2), transparent 50%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 760px);
+  margin: 0 auto;
+  padding: 60px 0 80px;
+  display: grid;
+  place-items: center;
+  gap: 18px;
+  text-align: center;
+}
+
+.heart-wrap {
+  animation: beat 1.5s infinite ease-in-out;
+}
+
+.heart {
+  font-size: clamp(3rem, 7vw, 6rem);
+  color: var(--pink);
+  text-shadow: 0 0 18px var(--shadow), 0 0 40px rgba(255, 92, 150, 0.7);
+}
+
+.card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  padding: 28px 22px 24px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+}
+
+.subtitle {
+  margin: 0;
+  color: #ffd8e8;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 10px 0 18px;
+  font-family: "Pacifico", cursive;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  color: #ffe0ef;
+}
+
+.message {
+  margin: 0 auto 20px;
+  max-width: 560px;
+  line-height: 1.8;
+  color: #fce9f2;
+}
+
+.photo-frame {
+  position: relative;
+  width: min(68%, 420px);
+  margin: 18px auto 10px;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 4px solid rgba(255, 143, 184, 0.7);
+  box-shadow: 0 14px 28px rgba(255, 91, 154, 0.35);
+  background: linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0.02));
+  animation: photoFloat 3s ease-in-out infinite alternate;
+}
+
+.reveal-photo {
+  position: relative;
+  overflow: hidden;
+}
+
+.reveal-photo::before,
+.reveal-photo::after {
+  content: "❤";
+  position: absolute;
+  font-size: 20px;
+  color: rgba(255, 120, 170, 0.7);
+  animation: floatHeart 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+.reveal-photo::before {
+  left: 18%;
+  top: 12%;
+  animation-delay: 0.5s;
+}
+
+.reveal-photo::after {
+  right: 18%;
+  bottom: 14%;
+  animation-delay: 1.2s;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  transform: scale(1.02);
+  animation: imageFade 1.8s ease forwards;
+}
+
+.signature {
+  margin: 18px 0 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffd3e6;
+}
+
+.qr-section {
+  margin-top: 22px;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+}
+
+.qr-label {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f9d7e7;
+}
+
+.qr-code {
+  width: 150px;
+  height: 150px;
+  padding: 10px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 12px 25px rgba(255, 95, 152, 0.35);
+  animation: qrPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes beat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes photoFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-12px) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-24px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes imageFade {
+  0% {
+    opacity: 0.15;
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes qrPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 12px 25px rgba(255, 95, 152, 0.35);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 16px 30px rgba(255, 95, 152, 0.5);
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 22px 16px 18px;
+  }
+
+  .photo-frame {
+    width: min(80%, 360px);
+  }
+
+  img {
+    height: 260px;
+  }
+}
